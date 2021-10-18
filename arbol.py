@@ -91,7 +91,7 @@ def Tree(n):
     for k in range(1,n):
         #print(k, "----")
         List_nodes(k,k, '')
-
+    f.write(str(n)+ '\t'+'\n')
     f.close()
 
 
@@ -126,7 +126,7 @@ def random_tree(sequence, seed=None, create_using=None):
     tree.add_nodes_from(utree.nodes)  
     tree.add_edges_from(edges)
    
-   return tree
+    return tree
 
 
 
