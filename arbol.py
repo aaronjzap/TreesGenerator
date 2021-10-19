@@ -67,10 +67,10 @@ def Energia_vertice(valores,vectores):
 
 #--------------------------------------------------------
 def Tree(n):
-    f = open ('trees.txt','w')
+    f = open ("Trees_"+str(n+2)+'.txt','w')
     f.close()
-    f = open ('trees.txt','a')
-    
+    f = open ("Trees_"+str(n+2)+'.txt','a')
+    global suma
     def List_nodes(Sum, j, num2):
         #print(Sum, j)
         if Sum==n:
@@ -89,8 +89,8 @@ def Tree(n):
                 continue
             
     for k in range(1,n):
-        #print(k, "----")
         List_nodes(k,k, '')
+        
     f.write(str(n)+ '\t'+'\n')
     f.close()
 
@@ -99,12 +99,6 @@ def Tree(n):
 
 
 
-    
-    
-def Verification(L):
-    for l in L:
-        print(sum(l))
-    print(len(L))
     
     
 def  To_sequence(Lis):
@@ -159,7 +153,7 @@ def Measures(grafo, n, EnergyT, EnergyV,  Degree, Close, Bet, Eigen):
     Add_csv(EV, EnergyV)
     Add_csv(Grados_sele(grafo.degree), Degree)           
     Add_csv(list(nx.closeness_centrality(grafo).values()), Close)
-    #Add_csv(list(nx.betweenness_centrality(grafo).values()), Bet)
+    Add_csv(list(nx.betweenness_centrality(grafo).values()), Bet)
     Add_csv(list(nx.eigenvector_centrality_numpy(grafo).values()), Eigen)
 
       
@@ -175,20 +169,20 @@ def Add_csv(data, name):
 
 def Measure_calculation(n):
     
-    f = open ('trees.txt','r')
+    f = open ("Distint_Tree_"+str(n)+'.txt','r')
     EnergyT, EnergyV,  Degree, Close, Bet, Eigen = Rename_files(n)
     suma=0
     for linea in f:        
         divided = linea.split("\t")
-        divided =list( map(int, divided[:-1]))
-        #print(sum(divided))
+        divided =list( map(int, divided))
+        #print(divided, sum(divided))
         suma+=1
         sequence= To_sequence(divided)
         tree    =random_tree(sequence)
         Measures(tree, n, EnergyT, EnergyV,  Degree, Close, Bet, Eigen)
         
     f.close()
-    print(suma, "----")
+    #print(suma, "----")
     
     
     
@@ -197,19 +191,14 @@ def Measure_calculation(n):
     
     
     
-
+"""
     
 if __name__ == "__main__":
     n= 6
-    import time 
-    start= time.time()
     Tree(n-2)
-    #end= time.time()
-    #print(end- start)
-    #Measure_calculation(n)
-    #Verification(n)
-  
+    Measure_calculation(n)
+
     
     
-    
+"""
     

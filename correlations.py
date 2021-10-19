@@ -23,6 +23,7 @@ def Correlations(n):
         #data= pd.to_numeric(data, downcast='integer')
         data.astype(float)
         return data
+    
     def One_one(name_X, name_Y):
         X= Read(name_X)
         Y= Read(name_Y)
@@ -36,7 +37,6 @@ def Correlations(n):
     EV_Cl  =One_one(EnergyV, Close)
     EV_Be  =One_one(EnergyV, Bet)
     EV_Ei  =One_one(EnergyV, Eigen)
-    
     Draw_correlations([EV_Deg,EV_Cl, EV_Be, EV_Ei ], n)
     ET= Read(EnergyT)
     ET = ET.to_numpy()
@@ -44,7 +44,7 @@ def Correlations(n):
    
 def Order_by(Val):
     import itertools
-    print(Val)
+    #print(Val)
     Val= list(itertools.chain(*Val))
     V= list(zip(Val, range(0,len(Val))))
     c =list(np.array(V)[:,1])
@@ -53,7 +53,7 @@ def Order_by(Val):
 def Draw_correlations(Lista, n):
     plt.grid(color='silver', linestyle='-', linewidth=1)
     X=list(range(len(Lista[0])))
-    print(len(X),Lista[0])
+    #print(len(X),Lista[0])
     plt.plot(X, Lista[0], label="$\delta$", linewidth=8)
     plt.plot(X, Lista[1],label= "$C_{clo}$", linewidth=8)
     plt.plot(X, Lista[2], label="$C_{bet}$", linewidth=8)
@@ -67,8 +67,3 @@ def Draw_correlations(Lista, n):
     
     
     
-    
-if __name__ == "__main__":
-
-    n = 15
-    Correlations(n)
